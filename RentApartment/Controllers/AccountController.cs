@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -9,6 +11,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Security.Claims;
+using System.Security.Principal;
+using System.Data.Entity;
 
 namespace RentApartment.Controllers
 {
@@ -95,10 +99,25 @@ namespace RentApartment.Controllers
             ViewBag.returnUrl = returnUrl;
             return View(model);
         }
+
         public ActionResult Logout()
         {
             AuthenticationManager.SignOut();
             return RedirectToAction("Login");
+        }
+
+        // POST: /Account/LogOff
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogOff()
+        {
+            ApplicationContext db = new ApplicationContext();
+            var tmp2 = db.Users.Where(x => x.Email == "test12344@mail.ru").SingleOrDefault();
+            var tmp3 = db.TypesHome;
+            var id = HttpContext.User.Identity.Name;
+            var tmp = HttpContext.GetOwinContext().Authentication;
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -64,5 +64,11 @@ namespace RentApartment.Controllers
             return View(model);
         }
 
+        public ActionResult OpenApartment(int idApartment)
+        {
+            ApplicationContext db = new ApplicationContext();
+            var app = db.Apartments.Include(x => x.TypeHome).Include(x => x.Address);
+            return View(app.Where(x => x.Id == idApartment).SingleOrDefault());
+        }
     }
 }

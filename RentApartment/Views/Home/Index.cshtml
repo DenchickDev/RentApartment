@@ -15,7 +15,7 @@
         <div class="jumbotron">
             <h1>@appartment.Num_Floors -комнатная квартира</h1>
             <p class="lead">Адрес: ул. @appartment.Address.Street, дом: @appartment.Address.House,кв. @appartment.Address.Apartment</p>
-            <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+            <p>@Html.ActionLink("Подробнее", "OpenApartment", new { idApartment = appartment.Id}, new { @class = "btn btn-primary btn-lg" })</p>
         </div>
     }
 }

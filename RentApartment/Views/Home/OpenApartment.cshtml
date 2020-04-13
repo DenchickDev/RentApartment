@@ -1,0 +1,84 @@
+﻿@model RentApartment.Models.Apartment
+
+<div>
+    <h4>Apartment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Florr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Florr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Num_Floors)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Num_Floors)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Num_Rooms)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Num_Rooms)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Area)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Area)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LivingArea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LivingArea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KitchenArea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KitchenArea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rf_TypeHomeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rf_TypeHomeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rf_AdressId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rf_AdressId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

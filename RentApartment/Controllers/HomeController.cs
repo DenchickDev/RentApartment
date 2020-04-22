@@ -20,8 +20,7 @@ namespace RentApartment.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
+            //return RedirectToAction("Contact", "Manage");
             return View();
         }
 
@@ -96,5 +95,6 @@ namespace RentApartment.Controllers
             var app = db.Apartments.Include(x => x.TypeHome).Include(x => x.Address);
             return View(app.Where(x => x.Id == idApartment).SingleOrDefault());
         }
+        
     }
 }

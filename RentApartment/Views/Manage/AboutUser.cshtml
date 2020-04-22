@@ -1,0 +1,61 @@
+﻿@model IEnumerable<RentApartment.Models.Apartment>
+@{
+    ViewBag.Title = "AboutUser";
+}
+
+<br><br><br>
+
+<style>
+
+    #author img {
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        -ms-border-radius: 100%;
+        -o-border-radius: 100%;
+        border-radius: 100%;
+        border: 5px solid #ecf0f1;
+        margin-bottom: 10px;
+    }
+</style>
+
+
+
+
+
+<div class="col-lg-4 col-md-4 col-xs-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <header class="panel-title">
+                <div class="text-center">
+                    <strong>Пользователь сайта</strong>
+                </div>
+            </header>
+        </div>
+        <div class="panel-body">
+            <div class="text-center" id="author">
+                <img src="~/Manage/Cat.jpg" width="222">
+                <!--<div style="background-image: url(Cat.jpg);"  width="222"></div>-->
+                <h3>Василий Понторезов</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-8 col-md-8 col-xs-12">
+    <div class="py-5 text-center">
+        <h2 style="margin-top: 0px;">Ваши объявления</h2>
+    </div>
+    @if (Model.Count() != 0)
+    {
+        foreach (var appartment in Model)
+        {
+            <div class="jumbotron">
+                <h1>@appartment.Num_Rooms - комнатная квартира</h1>
+                <p class="lead">Адрес: ул. @appartment.Address.Street, дом: @appartment.Address.House,кв. @appartment.Address.Apartment</p>
+                <p>@Html.ActionLink("Подробнее", "OpenApartment", "Home", new { idApartment = appartment.Id }, new { @class = "btn btn-primary btn-lg" })</p>
+            </div>
+        }
+    }
+</div>
+
+
+

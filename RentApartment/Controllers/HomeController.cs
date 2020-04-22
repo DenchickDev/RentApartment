@@ -34,7 +34,8 @@ namespace RentApartment.Controllers
 
         public ActionResult AddApartment()
         {
-            return View();
+            var model = new Apartment();
+            return View(model);
         }
 
         [HttpPost]

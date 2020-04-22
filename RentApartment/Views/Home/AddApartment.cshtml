@@ -67,8 +67,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.rf_TypeHomeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.rf_TypeHomeId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.rf_TypeHomeId, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(x => x.rf_TypeHomeId, Model.GetTypeHomeList(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.rf_TypeHomeId, "", new { @class = "text-danger" })
             </div>
         </div>
 

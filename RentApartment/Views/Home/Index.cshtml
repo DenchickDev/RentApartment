@@ -13,7 +13,7 @@
     foreach (var appartment in Model)
     {
         <div class="jumbotron">
-            <h1>@appartment.Num_Floors -комнатная квартира</h1>
+            <h1>@appartment.Num_Rooms -комнатная квартира</h1>
             <p class="lead">Адрес: ул. @appartment.Address.Street, дом: @appartment.Address.House,кв. @appartment.Address.Apartment</p>
             <p>@Html.ActionLink("Подробнее", "OpenApartment", new { idApartment = appartment.Id}, new { @class = "btn btn-primary btn-lg" })</p>
         </div>

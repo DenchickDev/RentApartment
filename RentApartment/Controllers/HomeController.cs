@@ -34,17 +34,42 @@ namespace RentApartment.Controllers
 
         public ActionResult AddApartment()
         {
-            var model = new Apartment();
+            var model = new ApartmentAdd();
             return View(model);
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddApartment(Apartment model)
+        public async Task<ActionResult> AddApartment(ApartmentAdd model)
         {
             if (ModelState.IsValid)
             {
                 ApplicationContext db = new ApplicationContext();
                 var current_user = db.Users.Where(x => x.Email == HttpContext.User.Identity.Name).SingleOrDefault();
+                var current_address = db.Addresses.Where(x => x.Country == model.Country && x.Area == model.Area &&
+                                                 x.City == model.City && x.District == model.District &&
+                                                 x.Street == model.Street && x.House == model.House &&
+                                                 x.Apartment == model.Apartment).SingleOrDefault();
+                int addressID = 0;
+                if(current_address == null)
+                {
+                    Address address = new Address
+                    {
+                        Country = model.Country,
+                        Area = model.Area,
+                        City = model.City,
+                        District = model.District,
+                        Street = model.Street,
+                        House = model.House,
+                        Apartment = model.Apartment
+                    };
+                    db.Addresses.Add(address);
+                    db.SaveChanges();
+                    addressID = address.Id;
+                }
+                else
+                {
+                    addressID = current_address.Id;
+                }
                 Apartment apartment = new Apartment {
                     Florr = model.Florr,
                     Num_Floors = model.Num_Floors,
@@ -55,7 +80,7 @@ namespace RentApartment.Controllers
                     Price = model.Price,
                     rf_UsersId = current_user.Id,
                     rf_TypeHomeId = model.rf_TypeHomeId,
-                    rf_AdressId = model.rf_AdressId
+                    rf_AdressId = addressID
                 };
                 db.Apartments.Add(apartment);
                 db.SaveChanges();

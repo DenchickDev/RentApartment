@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
 
 namespace RentApartment.Models
 {
@@ -28,19 +27,7 @@ namespace RentApartment.Models
         [ForeignKey("Address")]
         public int rf_AdressId { get; set; }
         public Address Address { get; set; }
-
-        public List<SelectListItem> GetTypeHomeList()
-        {
-            ApplicationContext db = new ApplicationContext();
-            var typesHome = db.TypesHome.ToList();
-            int cnt = typesHome.Count;
-            List<SelectListItem> l = new List<SelectListItem>(cnt);
-            foreach (var type in typesHome)
-            {
-                l.Add(new SelectListItem() { Text = type.Name, Value = type.Id.ToString()});
-            }
-            return l;
-        }
+        
         //public Apartment(int _Florr, int _Num_Floors, int _Num_Rooms, int _Total_Area, int _LivingArea, int _KitchenArea, int _Price, string _rf_UsersId, int _rf_TypeHomeId, int _rf_AdressId)
         //{
         //    Florr = _Florr;

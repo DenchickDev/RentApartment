@@ -20,10 +20,9 @@ namespace RentApartment.Controllers
     {
         public ActionResult AboutUser()
         {
-            //ViewBag.Message = "Your contact page.";
-
             ApplicationContext db = new ApplicationContext();
-            var app = db.Apartments.Include(x => x.TypeHome).Include(x => x.Address);
+            var current_user = db.Users.Where(x => x.Email == HttpContext.User.Identity.Name).SingleOrDefault();
+            var app = db.Apartments.Include(x => x.TypeHome).Include(x => x.Address).Where(x => x.rf_UsersId == current_user.Id);
             return View(app);
         }
     }
